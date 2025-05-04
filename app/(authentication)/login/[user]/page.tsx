@@ -1,20 +1,55 @@
 "use client"
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import { Toast } from "@/lib/toast/toast";
 import { useParams, useRouter } from "next/navigation";
+import LoginForm from "@/components/forms/login-form";
+import { IEmailPasswordFormValues } from "@/types/user";
+import { AuthService } from "@/services/auth.service";
 
 
 const LoginPage = () => {
   const router = useRouter();
-  const { user } = useParams()
+  const params = useParams<{ user: string }>(); 
+  const user = params.user;
   let imagePath = ""
   console.log(user); 
+  const authService = new AuthService();
+  const toast = new Toast();
   
   if(user == "hm"){
-     
     imagePath = "/offc.jpeg"
   }
+
+  const onFormSubmit = async (formData: IEmailPasswordFormValues) => {
+    const completeFormData: IEmailPasswordFormValues = {
+      ...formData,
+      userType: user  , 
+    };
+  
+    console.log(completeFormData);
+
+    try {
+      const response = await authService.userSignIn(completeFormData);
+      console.log(response);
+      if (response?.statusCode === 200) {
+        const token = response?.token;
+        router.push("/lms-admin/")
+      } else {
+        toast.showToast('error', response?.message)
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+       
+      // toast.showToast('error', error?.message)
+    }
+    console.log('login form submitted')
+  }
+
   return (
     <div className="flex h-screen">
+            <ToastContainer />
+
       {/* Left side: Image */}
       <div className="w-1/2 bg-cover bg-center" style={{ backgroundImage: `url('${imagePath}')` }}>
         {/* Add any overlay or content here if needed */}
@@ -25,47 +60,7 @@ const LoginPage = () => {
         <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold text-center text-gray-800">Login</h2>
           
-          <form className="space-y-6">
-            {/* Email input */}
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email Address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              />
-            </div>
-
-            {/* Password input */}
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              />
-            </div>
-
-            {/* Submit Button */}
-            <div>
-              <button
-                type="submit"
-                className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-              >
-                Log In
-              </button>
-            </div>
-          </form>
-
-          {/* Forgot password link */}
+          <LoginForm onFormSubmit={onFormSubmit}/>
           <p className="mt-2 text-center text-sm text-gray-600">
             <a href="#" className="text-blue-600 hover:text-blue-800">
               Forgot your password?
