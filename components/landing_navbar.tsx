@@ -75,8 +75,15 @@ export const LandingNavbar = () => {
             {isDropdownOpen && (
               <div className="absolute left-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-20">
                 <Link
-                    href={`/login/[slug]`}
-                    as={`/login/hm`}
+                  href={`/login/[slug]`}
+                  as={`/login/principal`}
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Principal Login
+                </Link>
+                <Link
+                  href={`/login/[slug]`}
+                  as={`/login/hm`}
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 >
                   HM Login
@@ -100,12 +107,13 @@ export const LandingNavbar = () => {
           <a href="/contact" className="text-gray-700 hover:text-blue-600">
             Contact
           </a>
-          <a
-            href="#"
+          <Link
+            href={`/login/[slug]`}
+            as={`/login/admin`}
             className="ml-4 bg-blue-600 text-white py-2 px-5 rounded hover:bg-blue-700 transition duration-200"
           >
             Admin Login<i className="fa fa-arrow-right ml-2"></i>
-          </a>
+          </Link>
         </div>
       </div>
 
