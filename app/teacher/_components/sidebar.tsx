@@ -27,47 +27,13 @@ export const SideBar = () => {
           icon: LayoutDashboard,
         },
         {
-          group: "Staff",
+          group: "Students",
           children: [
-            { label: "Add", href: "/lms-admin/staff/add", icon: UserPlus },
-            { label: "View", href: "/lms-admin/staff/view", icon: Eye },
+            { label: "Add", href: "/teacher/student/add", icon: UserPlus },
+            { label: "View", href: "/teacher/student//view", icon: Eye },
           ],
         },
-        {
-          label: "Form Elements",
-          href: "/forms",
-          icon: ClipboardList,
-        },
-        {
-          label: "Charts",
-          href: "/charts",
-          icon: BarChart2,
-        },
-        {
-          label: "Tables",
-          href: "/tables",
-          icon: Table,
-        },
-        {
-          label: "Icons",
-          href: "/icons",
-          icon: Image,
-        },
-        {
-          label: "User Pages",
-          href: "/users",
-          icon: Users,
-        },
-        {
-          label: "Error Pages",
-          href: "/errors",
-          icon: ShieldAlert,
-        },
-        {
-          label: "Documentation",
-          href: "/docs",
-          icon: BookOpen,
-        },
+         
       ];
     
   return (

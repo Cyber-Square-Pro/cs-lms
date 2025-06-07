@@ -1,9 +1,10 @@
 import { Navbar } from "@/app/lms-admin/_components/navbar";
-import { SideBar } from "@/app/lms-admin/_components/sidebar";
+import { SideBar } from "./_components/sidebar";
+ 
 
  
 
-export default function AdminLayout({
+export default function TeacherLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -11,7 +12,7 @@ export default function AdminLayout({
   return (
     <div className="flex h-screen bg-[#f6f8fc]">
       {/* Sidebar */}
-      <SideBar />
+     <SideBar/>
 
       {/* Main area */}
       <div className="ml-64 flex-1 flex flex-col overflow-hidden">

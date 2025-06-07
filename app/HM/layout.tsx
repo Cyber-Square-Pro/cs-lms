@@ -1,5 +1,5 @@
-import { Navbar } from "@/app/lms-admin/_components/navbar";
-import { SideBar } from "@/app/lms-admin/_components/sidebar";
+import { Navbar } from "./_components/navbar";
+import { SideBar } from "./_components/sidebar";
 
  
 

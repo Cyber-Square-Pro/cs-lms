@@ -16,68 +16,39 @@ import {
 } from "lucide-react";
 
 export const SideBar = () => {
+  const logo = process.env.NEXT_PUBLIC_LOCAL_ASSET_BASE_URL + "cspro-logo.jpeg";
 
-  const logo =
-    process.env.NEXT_PUBLIC_LOCAL_ASSET_BASE_URL + "cspro-logo.jpeg";
-    
-    const menuItems = [
-        {
-          label: "Dashboard",
-          href: "/lms-admin",
-          icon: LayoutDashboard,
-        },
-        {
-          group: "Staff",
-          children: [
-            { label: "Add", href: "/lms-admin/staff/add", icon: UserPlus },
-            { label: "View", href: "/lms-admin/staff/view", icon: Eye },
-          ],
-        },
-        {
-          label: "Form Elements",
-          href: "/forms",
-          icon: ClipboardList,
-        },
-        {
-          label: "Charts",
-          href: "/charts",
-          icon: BarChart2,
-        },
-        {
-          label: "Tables",
-          href: "/tables",
-          icon: Table,
-        },
-        {
-          label: "Icons",
-          href: "/icons",
-          icon: Image,
-        },
-        {
-          label: "User Pages",
-          href: "/users",
-          icon: Users,
-        },
-        {
-          label: "Error Pages",
-          href: "/errors",
-          icon: ShieldAlert,
-        },
-        {
-          label: "Documentation",
-          href: "/docs",
-          icon: BookOpen,
-        },
-      ];
-    
+  const menuItems = [
+    {
+      label: "Dashboard",
+      href: "/HM/",
+      icon: LayoutDashboard,
+    },
+    {
+      group: "Teacher",
+      children: [
+        { label: "Register", href: "/HM/teacher/register", icon: UserPlus },
+        { label: "View", href: "/HM/teacher/view", icon: Eye },
+      ],
+    },
+
+    {
+      group: "Class",
+      children: [
+        { label: "Add Class Room", href: "/HM/class/add", icon: UserPlus },
+        { label: "View Class", href: "/HM/class/view", icon: Eye },
+      ],
+    },
+     
+  ];
+
   return (
     <aside className="w-64 bg-white shadow-lg fixed h-full flex flex-col">
       <div className="p-6 border-b">
-               <img src={logo} alt="Logo" className="w-32" />
-
+        <img src={logo} alt="Logo" className="w-32" />
       </div>
       <nav className="flex-1 p-4">
-      <ul className="space-y-4 text-sm font-medium text-gray-700">
+        <ul className="space-y-4 text-sm font-medium text-gray-700">
           {menuItems.map((item, index) =>
             item.group ? (
               <li key={index}>
