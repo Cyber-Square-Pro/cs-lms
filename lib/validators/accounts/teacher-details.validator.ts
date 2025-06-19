@@ -7,6 +7,7 @@ export const TeacherDetailsValidator = z.object({
     designation: z.string().min(1, 'designation Required'),
     department: z.string().min(1, 'Department Required'),
     nationality: z.string().min(1, 'Nationality Required'),
+    
     subjects_assigned: z.array(z.string()).min(1, 'At least one subject must be assigned'),
 
     });

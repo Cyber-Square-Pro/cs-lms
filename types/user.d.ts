@@ -4,6 +4,14 @@ export interface IEmailPasswordFormValues {
   userType?: string;
 };
 
+
+export interface IPassword {
+  old_password: string;
+  new_password: string;
+  confirm_password: string;
+
+};
+
 export interface IStaff {
 
   staff_name: string;
@@ -20,8 +28,8 @@ export interface IStaff {
 
 }
 
-export interface ITeacherDetails{
- 
+export interface ITeacherDetails {
+
   staff_id: string;
   highest_qualification: string;
   board_or_university: string;
@@ -30,4 +38,3 @@ export interface ITeacherDetails{
   subjects_assigned: string[];
 
 }
- 

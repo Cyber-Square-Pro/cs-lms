@@ -50,17 +50,7 @@ const StudentsListPage: React.FC = () => {
 
   const totalPages = Math.ceil(studentsList.length / studentsPerPage);
 
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
-
-  const handlePageClick = (pageNum: number) => {
-    setCurrentPage(pageNum);
-  };
+   
 
   return (
     <div className="p-6">

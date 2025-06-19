@@ -28,6 +28,10 @@ const LoginPage = () => {
     imagePath = imageUrl + "teacher_pic.jpeg"
   }
 
+  if(user=="student"){
+    imagePath = imageUrl + "student.jpeg"
+  }
+
   const onFormSubmit = async (formData: IEmailPasswordFormValues) => {
     const completeFormData: IEmailPasswordFormValues = {
       ...formData,
@@ -52,6 +56,10 @@ const LoginPage = () => {
 
         if(userRole === "teacher"){
           router.push("/teacher/")
+        }
+
+        if(userRole === "student"){
+          router.push("/student/")
         }
        
       } else {

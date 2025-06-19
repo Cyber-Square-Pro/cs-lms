@@ -38,6 +38,9 @@ export class HMService extends APIService {
     }
 
 
+    
+
+
     async assignClassTeacher(data:any): Promise<any> {
 
         return this.axiosObj.put(API_BASE_URL + "/api/class/assign/teacher",data, { headers:  { Authorization: this.getToken() }} )
