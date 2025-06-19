@@ -16,6 +16,10 @@ import {
 } from "lucide-react";
 
 export const SideBar = () => {
+
+  const logo =
+    process.env.NEXT_PUBLIC_LOCAL_ASSET_BASE_URL + "cspro-logo.jpeg";
+    
     const menuItems = [
         {
           label: "Dashboard",
@@ -69,7 +73,8 @@ export const SideBar = () => {
   return (
     <aside className="w-64 bg-white shadow-lg fixed h-full flex flex-col">
       <div className="p-6 border-b">
-        <img src="cs-pro-logo.jpeg" alt="Logo" className="w-32" />
+               <img src={logo} alt="Logo" className="w-32" />
+
       </div>
       <nav className="flex-1 p-4">
       <ul className="space-y-4 text-sm font-medium text-gray-700">

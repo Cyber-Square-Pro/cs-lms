@@ -1,6 +1,7 @@
-import "../globals.css";
-import { Navbar } from "./_components/navbar";
-import { SideBar } from "./_components/sidebar";
+import { Navbar } from "@/app/lms-admin/_components/navbar";
+import { SideBar } from "@/app/lms-admin/_components/sidebar";
+
+ 
 
 export default function AdminLayout({
   children,
@@ -8,20 +9,22 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
-    
     <div className="flex h-screen bg-[#f6f8fc]">
-    {/* Sidebar */}
-    <SideBar   /> {/* Set a fixed width for the sidebar */}
-  
-    {/* Main area */}
-    <div className="flex-1 flex flex-col">
-      {/* Top Navbar */}
-      <Navbar />
-  
-      {/* Page Content */}
-      <main className="p-6 mt-16">{children}</main>
+      {/* Sidebar */}
+      <SideBar />
+
+      {/* Main area */}
+      <div className="ml-64 flex-1 flex flex-col overflow-hidden">
+        {/* Navbar */}
+        <div className="h-16 flex-shrink-0">
+          <Navbar />
+        </div>
+
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto p-6">
+          {children}
+        </main>
+      </div>
     </div>
-  </div>
-  
   );
 }

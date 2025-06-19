@@ -89,13 +89,15 @@ export const LandingNavbar = () => {
                   HM Login
                 </Link>
                 <Link
-                  href="/testimonial"
+                  href={`/login/[slug]`}
+                  as={`/login/teacher`}
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 >
                   Teacher Login
                 </Link>
                 <Link
-                  href="/404"
+                  href={`/login/[slug]`}
+                  as={`/login/student`}
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 >
                   Student Login

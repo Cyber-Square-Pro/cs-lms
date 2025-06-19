@@ -16,9 +16,20 @@ const LoginPage = () => {
   console.log(user); 
   const authService = new AuthService();
   const toast = new Toast();
+  const imageUrl = process.env.NEXT_PUBLIC_LOCAL_ASSET_BASE_URL;
   
   if(user == "hm"){
-    imagePath = "/offc.jpeg"
+    imagePath =  imageUrl + 'hm.jpg'
+  }
+   if(user == "admin"){
+      imagePath =  imageUrl + 'admin.jpg'
+  }
+  if(user=="teacher"){
+    imagePath = imageUrl + "teacher_pic.jpeg"
+  }
+
+  if(user=="student"){
+    imagePath = imageUrl + "student.jpeg"
   }
 
   const onFormSubmit = async (formData: IEmailPasswordFormValues) => {
@@ -31,10 +42,26 @@ const LoginPage = () => {
 
     try {
       const response = await authService.userSignIn(completeFormData);
-      console.log(response);
+      console.log(response);  
       if (response?.statusCode === 200) {
-        const token = response?.token;
-        router.push("/lms-admin/")
+        const userRole = response?.userRole;
+        localStorage.setItem("userToken", response?.token);
+        localStorage.setItem("currentUserRole", userRole);
+        if(userRole === "Admin"){
+          router.push("/lms-admin/")
+        }
+        if(userRole === "hm_boys" || userRole === "hm_girls"){
+          router.push("/HM/")
+        }
+
+        if(userRole === "teacher"){
+          router.push("/teacher/")
+        }
+
+        if(userRole === "student"){
+          router.push("/student/")
+        }
+       
       } else {
         toast.showToast('error', response?.message)
       }

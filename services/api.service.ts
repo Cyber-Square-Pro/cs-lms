@@ -100,6 +100,9 @@
     }
 
 
+    getToken() {  
+      return localStorage.getItem('userToken') || null;
+    }
     getHeaders() {
       const accessToken = this.getAccessToken();
       if (accessToken) {
