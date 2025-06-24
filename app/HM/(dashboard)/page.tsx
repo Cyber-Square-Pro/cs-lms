@@ -1,9 +1,20 @@
-import React from 'react'
+"use client";
+import Spinner from "@/components/spinner";
+import React, { useEffect, useState } from "react";
 
 const HMDashboardPage = () => {
-  return (
-    <div>HMDashboardPage</div>
-  )
-}
+  const [loading, setLoading] = useState(true);
 
-export default HMDashboardPage
+  useEffect(() => {
+    // Show spinner for 5 seconds
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer); // Cleanup
+  }, []);
+
+  return <>{loading ? <Spinner /> : <div>HMDashboardPage</div>}</>;
+};
+
+export default HMDashboardPage;

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import {
@@ -13,9 +14,21 @@ import {
   User,
   UserPlus,
   Eye,
+  LogOut,
 } from "lucide-react";
 
+
+
+
 export const SideBar = () => {
+
+   function handleLogout() {
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("currentUserRole");
+    window.location.href = "/";
+  }
+
+
   const logo = process.env.NEXT_PUBLIC_LOCAL_ASSET_BASE_URL + "cspro-logo.jpeg";
 
   const menuItems = [
@@ -39,6 +52,24 @@ export const SideBar = () => {
         { label: "View Class", href: "/HM/class/view", icon: Eye },
       ],
     },
+
+     {
+      group: "Exam",
+      children: [
+        { label: "Add Exam", href: "/HM/exam/add", icon: UserPlus },
+        { label: "View Exam", href: "/HM/exam/view", icon: Eye },
+        { label: "Question Papers", href: "/HM/class/view", icon: Eye },
+
+      ],
+    },
+    {
+      group: "Settings",
+      children: [
+
+        { label: "Logout", href: "#", icon: Eye },
+
+      ],
+    },
      
   ];
 
@@ -55,18 +86,30 @@ export const SideBar = () => {
                 <div className="uppercase text-xs font-semibold text-gray-500 px-2 mb-1">
                   {item.group}
                 </div>
-                <ul className="space-y-1 pl-4">
-                  {item.children.map((child) => (
-                    <li key={child.label}>
-                      <Link
-                        href={child.href}
-                        className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition-colors"
-                      >
-                        <child.icon size={16} />
-                        <span>{child.label}</span>
-                      </Link>
-                    </li>
-                  ))}
+                  <ul className="space-y-1 pl-4">
+                  {item.children.map((child) =>
+                    child.label === "Logout" ? (
+                      <li key={child.label}>
+                        <button
+                          onClick={handleLogout}
+                          className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition-colors w-full text-left"
+                        >
+                          <child.icon size={16} />
+                          <span>{child.label}</span>
+                        </button>
+                      </li>
+                    ) : (
+                      <li key={child.label}>
+                        <Link
+                          href={child.href}
+                          className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition-colors"
+                        >
+                          <child.icon size={16} />
+                          <span>{child.label}</span>
+                        </Link>
+                      </li>
+                    )
+                  )}
                 </ul>
               </li>
             ) : (

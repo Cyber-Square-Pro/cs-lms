@@ -1,3 +1,5 @@
+
+import ProtectedRoute from "../_protected-route/authorized-access";
 import { Navbar } from "./_components/navbar";
 import { SideBar } from "./_components/sidebar";
 
@@ -9,6 +11,8 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
+     <ProtectedRoute allowedRoles={['hm_boys','hm_girls']}>
+
     <div className="flex h-screen bg-[#f6f8fc]">
       {/* Sidebar */}
       <SideBar />
@@ -26,5 +30,6 @@ export default function AdminLayout({
         </main>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }
