@@ -65,6 +65,17 @@ export const SideBar = () => {
         },
       ],
     },
+    {
+      group: "Exams",
+      children: [
+        {
+          label: "View",
+          href: "/teacher/exams/view",
+          icon: Notebook,
+        },
+       
+      ],
+    },
 
     {
       group: "Settings",

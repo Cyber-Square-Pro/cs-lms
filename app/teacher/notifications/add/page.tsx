@@ -1,12 +1,11 @@
 import NotificationForm from '@/components/forms/notfication-form'
 import React from 'react'
 
-type Props = {}
 
-const NotificationAddPage = (props: Props) => {
+const NotificationAddPage = () => {
   return (
     <div>
-    <NotificationForm/>
+    <NotificationForm userRole='Teacher'/>
     </div>
   )
 }

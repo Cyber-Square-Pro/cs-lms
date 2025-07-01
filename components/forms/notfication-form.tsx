@@ -7,8 +7,17 @@ import {
   TNotificationsValidator,
 } from "@/lib/validators/accounts/notification.validator"; 
 import { zodResolver } from '@hookform/resolvers/zod';
-const NotificationForm = () => {
+import { CommonService } from '@/services/common.service';
+import { Toast } from '@/lib/toast/toast';
 
+interface Props{
+  userRole: string
+}
+const NotificationForm:React.FC<Props> = (props) => {
+  const commonService = new CommonService()
+    const toast = new Toast();
+const {userRole} = props
+console.log(userRole)
      const {
         register,
         handleSubmit,
@@ -18,7 +27,20 @@ const NotificationForm = () => {
       });
 
     const onFormSubmit = async (data: TNotificationsValidator) => {
-
+      console.log(data)
+      const formData = new FormData()
+      formData.append('title',data.title)
+      formData.append('message',data.message)
+      formData.append('sender_type',userRole)
+      const response = await commonService.publishNotification(formData).then((res)=>{
+        console.log(res)
+        if(res?.statusCode==201){
+          toast.showToast('success',res?.message)
+        }
+        else{
+          toast.showToast('error',res?.message)
+        }
+      })
     }
 
 
@@ -28,7 +50,7 @@ const NotificationForm = () => {
             <ToastContainer />
       <h2 className="text-2xl font-semibold">Add Notication</h2>
 
-      <form className="space-y-6" >
+      <form className="space-y-6" onSubmit={handleSubmit(onFormSubmit)}>
  
         <div>
           <label

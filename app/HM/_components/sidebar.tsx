@@ -39,6 +39,15 @@ export const SideBar = () => {
         { label: "View Class", href: "/HM/class/view", icon: Eye },
       ],
     },
+    {
+      group: "Exam",
+      children: [
+        { label: "Add Exam", href: "/HM/exam/add", icon: UserPlus },
+        { label: "View Exam", href: "/HM/exam/view", icon: Eye },
+        //{ label: "Question Papers", href: "/HM/class/view", icon: Eye },
+
+      ],
+    },
      
   ];
 

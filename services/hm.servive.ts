@@ -37,10 +37,6 @@ export class HMService extends APIService {
             });
     }
 
-
-    
-
-
     async assignClassTeacher(data:any): Promise<any> {
 
         return this.axiosObj.put(API_BASE_URL + "/api/class/assign/teacher",data, { headers:  { Authorization: this.getToken() }} )
@@ -51,6 +47,16 @@ export class HMService extends APIService {
                 throw error?.response?.data;
             });
     }
+
+    async getHMDashboardData(): Promise<any> {
+        return this.axiosObj.get(API_BASE_URL + "/api/HM", { headers: { Authorization: this.getToken() },})
+    .then((response) => {
+      return response?.data;
+    })
+    .catch((error) => {
+      throw error?.response?.data;
+    });
+}
     
 
 }

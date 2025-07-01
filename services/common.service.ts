@@ -12,6 +12,16 @@ export class CommonService extends APIService {
         this.axiosObj = axios.create();
       }
   
+      async publishNotification(data:any): Promise<any> {
+
+        return this.axiosObj.post(API_BASE_URL + "/api/notification/publish", data,{ headers:  { Authorization: this.getToken() }} )
+            .then((response) => {
+                return response?.data;
+            })
+            .catch((error) => {
+                throw error?.response?.data;
+            });
+    }
 async logout(): Promise<any> {
    
 
