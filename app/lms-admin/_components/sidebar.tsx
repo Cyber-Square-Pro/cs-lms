@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import {
@@ -13,9 +14,18 @@ import {
   User,
   UserPlus,
   Eye,
+  LogOut,
 } from "lucide-react";
 
 export const SideBar = () => {
+
+   function handleLogout() {
+    localStorage.removeItem("class");
+    localStorage.removeItem("division");
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("currentUserRole");
+    window.location.href = "/";
+  }
 
   const logo =
     process.env.NEXT_PUBLIC_LOCAL_ASSET_BASE_URL + "cspro-logo.jpeg";
@@ -33,41 +43,20 @@ export const SideBar = () => {
             { label: "View", href: "/lms-admin/staff/view", icon: Eye },
           ],
         },
+
+         {
+      group: "Settings",
+      children: [
+         
         {
-          label: "Form Elements",
-          href: "/forms",
-          icon: ClipboardList,
+          label: "Logout",
+          href: "/teacher/settings/password/change",
+          icon: LogOut,
         },
-        {
-          label: "Charts",
-          href: "/charts",
-          icon: BarChart2,
-        },
-        {
-          label: "Tables",
-          href: "/tables",
-          icon: Table,
-        },
-        {
-          label: "Icons",
-          href: "/icons",
-          icon: Image,
-        },
-        {
-          label: "User Pages",
-          href: "/users",
-          icon: Users,
-        },
-        {
-          label: "Error Pages",
-          href: "/errors",
-          icon: ShieldAlert,
-        },
-        {
-          label: "Documentation",
-          href: "/docs",
-          icon: BookOpen,
-        },
+      ],
+    },
+       
+        
       ];
     
   return (
@@ -76,8 +65,8 @@ export const SideBar = () => {
                <img src={logo} alt="Logo" className="w-32" />
 
       </div>
-      <nav className="flex-1 p-4">
-      <ul className="space-y-4 text-sm font-medium text-gray-700">
+       <nav className="flex-1 p-4">
+        <ul className="space-y-4 text-sm font-medium text-gray-700">
           {menuItems.map((item, index) =>
             item.group ? (
               <li key={index}>
@@ -85,17 +74,29 @@ export const SideBar = () => {
                   {item.group}
                 </div>
                 <ul className="space-y-1 pl-4">
-                  {item.children.map((child) => (
-                    <li key={child.label}>
-                      <Link
-                        href={child.href}
-                        className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition-colors"
-                      >
-                        <child.icon size={16} />
-                        <span>{child.label}</span>
-                      </Link>
-                    </li>
-                  ))}
+                  {item.children.map((child) =>
+                    child.label === "Logout" ? (
+                      <li key={child.label}>
+                        <button
+                          onClick={handleLogout}
+                          className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition-colors w-full text-left"
+                        >
+                          <child.icon size={16} />
+                          <span>{child.label}</span>
+                        </button>
+                      </li>
+                    ) : (
+                      <li key={child.label}>
+                        <Link
+                          href={child.href}
+                          className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition-colors"
+                        >
+                          <child.icon size={16} />
+                          <span>{child.label}</span>
+                        </Link>
+                      </li>
+                    )
+                  )}
                 </ul>
               </li>
             ) : (

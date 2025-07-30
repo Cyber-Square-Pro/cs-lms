@@ -1,5 +1,6 @@
 import { Navbar } from "@/app/lms-admin/_components/navbar";
 import { SideBar } from "@/app/lms-admin/_components/sidebar";
+import ProtectedRoute from "../_protected-route/authorized-access";
 
  
 
@@ -9,6 +10,8 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
+     <ProtectedRoute allowedRoles={['Admin']}>
+
     <div className="flex h-screen bg-[#f6f8fc]">
       {/* Sidebar */}
       <SideBar />
@@ -26,5 +29,6 @@ export default function AdminLayout({
         </main>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }
